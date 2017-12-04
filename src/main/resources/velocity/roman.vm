@@ -1,0 +1,50 @@
+<html lang="en" ng-app="romanApp">
+<head>
+    #include("partials/header.html")
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+
+    #parse("partials/nav.vm")
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>$title</h2>
+        <p class="lead">$text</p>
+
+        <form action="/roman" method="post">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="input">Input:</label>
+                        <input name="input" type="text" class="form-control" id="input" placeholder="$placeholder" required autofocus>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <br>
+                        <button type="submit" class="btn btn-success">Convert to Roman/Number</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <br>
+                        <label>Answer:</label>
+                        <div class="alert $success" role="alert" style="display: $display"><b>$answer</b></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+</body>
+</html>

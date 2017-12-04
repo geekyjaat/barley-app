@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+heroku-rest.iml
+.gradle
+build
+/.idea
+/out/
+.DS_Store
+out/
+src/.DS_Store
+src/main/.DS_Store
+src/main/resources/.DS_Store
+src/main/resources/public/.DS_Store
+src/main/resources/public/js/.DS_Store
+/barley-data.iml

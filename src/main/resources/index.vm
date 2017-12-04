@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    #include("partials/header.html")
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+
+    #parse("partials/nav.vm")
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h1>$greeting.greeting</h1>
+                <p>$greeting.intro</p>
+            </div>
+            <div class="row">
+                #foreach($post in $posts.posts)
+                    #if($post)
+                        <div class="col-xs-6 col-lg-4">
+                            <h2>$post.heading</h2>
+                            <p>$post.intro</p>
+                            <p><a class="btn btn-default" href="$post.link" role="button">View details »</a></p>
+                        </div><!--/.col-xs-6.col-lg-4-->
+                    #end
+                #end
+            </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+                #foreach($link in $links)
+                    #if($link)
+                        <a href="$link.address" class="list-group-item" title="$link.description">$link.name</a>
+                    #end
+                #end
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+        <p>© 2017 The Barley, Inc.</p>
+    </footer>
+
+</div><!--/.container-->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/offcanvas.js"></script>
+
+</body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    #include("partials/header.html")
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+
+    #parse("partials/nav.vm")
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>$!title</h1>
+        <p class="lead">$!text</p>
+        <div class="alert alert-default">
+            $!description
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <address>
+                    <h3><strong>Barley, Inc.</strong></h3><br>
+                    <h4>Dwarka, New Delhi<br>
+                        Delhi, INDIA 110075<br>
+                        <abbr title="Phone">Phone:</abbr> (123) 456-7890
+                    </h4>
+                </address>
+                <br>
+                <address>
+                    <strong>The Barley</strong><br>
+                    <a href="mailto:#">first.last@example.com</a>
+                </address>
+            </div>
+            <div class="col-xs-6" id="map"></div>
+        </div>
+        <script>
+            function initMap() {
+                var uluru = {lat: 28.5921401, lng: 77.04604809999999};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=${google_key}&callback=initMap">
+        </script>
+        <!-- <a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+</body>
+</html>

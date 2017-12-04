@@ -1,0 +1,109 @@
+<html lang="en" ng-app="romanApp">
+<head>
+    #include("partials/header.html")
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+
+#parse("partials/nav.vm")
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>$!title</h2>
+        <p class="lead">$!text</p>
+
+        <form action="/trip" method="post">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="from">From:</label>
+                        <input name="from" type="text" class="form-control" id="from" placeholder="DENVER" required autofocus>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="to">To:</label>
+                        <input name="to" type="text" class="form-control" id="to" placeholder="CHICAGO" required>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="tripType">Type:</label>
+                        <select name="tripType" id="tripType" class="form-control">
+                            <option>Round-Trip</option>
+                            <option>One-Way</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="count">Count:</label>
+                        <select name="count" id="count" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="depart">Depart:</label>
+                        <input name="depart" type="date" class="form-control" id="depart" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="arrive">Arrive:</label>
+                        <input name="arrive" type="date" class="form-control" id="arrive">
+                    </div>
+                    <div class="col-lg-4">
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-success">Find My Trip</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <br>
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Trip Options</div>
+                            <div class="panel-body">
+                                <p>...</p>
+                                <!-- Table -->
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>abc</th>
+                                        <th>abc</th>
+                                        <th>abc</th>
+                                        <th>abc</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
