@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Map;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 public class Utilities {
 
@@ -27,7 +27,7 @@ public class Utilities {
         try {
             String key = System.getenv(GOOGLE_API_KEY);
             // if key is null, try system prop
-            if(key == null){
+            if (key == null) {
                 key = System.getProperty(GOOGLE_API_KEY);
             }
             //System.out.println(key);
@@ -81,17 +81,45 @@ public class Utilities {
         }
     }
 
-    public static Date now(){
+    public static Date now() {
         return new Date();
     }
 
-    public static Date midnight(){
+    public static Date midnight() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND,0);
+        cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
+    }
+
+    /**
+     * Get heroku assigned port for app
+     *
+     * @return int port
+     */
+    public static int getPort() {
+        String port = System.getenv("PORT");
+        if (port != null && port.length() != 0) {
+            return Integer.parseInt(port);
+        } else {
+            return 5000;
+        }
+    }
+
+    /**
+     * Get the specified db from heroku
+     *
+     * @param db
+     * @return
+     */
+    public static String dbUri(String db) {
+        String uri = System.getenv("db");
+        if (uri != null && uri.length() != 0) {
+            return uri;
+        }
+        return null;
     }
 }
