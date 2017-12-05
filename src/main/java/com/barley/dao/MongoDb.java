@@ -5,6 +5,7 @@ import com.barley.socket.AppWebSocket;
 import com.barley.util.Utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -16,19 +17,20 @@ import java.util.*;
 
 public class MongoDb {
 
-    private static final MongoDb theInstance = new MongoDb("barley");
+    private static final MongoDb theInstance = new MongoDb();
 
     public static MongoDb getInstance() {
         return theInstance;
     }
 
-    private final MongoClient mongoClient;
+    private final MongoClientURI mongoClientUri;
     private final MongoDatabase db;
     private ObjectMapper mapper = new ObjectMapper();
 
-    private MongoDb(String database) {
-        this.mongoClient = new MongoClient("localhost", 27017);
-        this.db = mongoClient.getDatabase(database);
+    private MongoDb() {
+        this.mongoClientUri = new MongoClientURI(Utilities.dbUri("MONGODB_URI"));
+        MongoClient client = new MongoClient(mongoClientUri);
+        this.db = client.getDatabase(mongoClientUri.getDatabase());
     }
 
     public List getLinks() {
