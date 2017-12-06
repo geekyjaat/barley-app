@@ -1,1 +1,1 @@
-web: java -jar build/libs/barley-data.jar
+web: java -jar build/libs/barley-app.jar
