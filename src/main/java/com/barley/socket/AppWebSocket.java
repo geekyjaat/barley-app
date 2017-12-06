@@ -15,14 +15,12 @@ public class AppWebSocket {
 
     private int count = 0;
 
-    public AppWebSocket() {
-    }
-
     // Store sessions if you want to, for example, broadcast a message to all users
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
     @OnWebSocketConnect
     public void connected(Session session) {
+        System.out.println("Adding session = [" + session + "]");
         sessions.add(session);
     }
 
@@ -40,7 +38,13 @@ public class AppWebSocket {
         count++;
     }
 
+    /**
+     * Send message to all sessions
+     *
+     * @param message
+     */
     public static void sendToAll(String message) {
+        System.out.println("message = [" + message + "]");
         sessions.stream().forEach(s -> {
             try {
                 s.getRemote().sendString(message);
@@ -50,7 +54,14 @@ public class AppWebSocket {
         });
     }
 
+    /**
+     * Send message to specified ip if present in stored sessions
+     *
+     * @param ip
+     * @param message
+     */
     public static void sendToIp(String ip, String message) {
+        System.out.println("ip = [" + ip + "], message = [" + message + "]");
         sessions.stream()
                 .filter(s -> s.getRemoteAddress().getAddress().getHostAddress().equalsIgnoreCase(ip))
                 .findFirst()
