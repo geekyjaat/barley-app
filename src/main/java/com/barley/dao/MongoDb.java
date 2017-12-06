@@ -74,7 +74,7 @@ public class MongoDb {
 
             long count = visits.count(new Document("ip", ip));
 
-            if (!ipAccessed)
+            //if (!ipAccessed)
                 AppWebSocket.sendToIp(ip, "Unique visitors: " + totalVisits + ". You have visited " + count + " times.");
         }).start();
     }
