@@ -116,7 +116,7 @@ public class Utilities {
      * @return
      */
     public static String dbUri(String db) {
-        String uri = System.getenv("db");
+        String uri = System.getenv(db);
         if (uri != null && uri.length() != 0) {
             return uri;
         }
