@@ -14,7 +14,7 @@ public class QpxExpress {
 
     public QpxExpress(String key) {
         this.key = key;
-        this.URL = "https://googleapis.com/qpxExpress/v1/trips/search?key=" + key;
+        this.URL = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + key;
     }
 
     public Itinerary findTrips(Input input) throws Exception {
