@@ -152,7 +152,7 @@ public class App {
             while (true) {
                 AppWebSocket.sendToAll("New blog posted - <a href=\"/newblog\">/newblog.</a> " + new Date());
                 try {
-                    Thread.sleep(20000);
+                    Thread.sleep(500000);
                 } catch (InterruptedException ie) {
 
                 }
