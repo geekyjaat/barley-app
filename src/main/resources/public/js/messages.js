@@ -1,4 +1,10 @@
-var webSocket = new WebSocket('ws://localhost:5000/echo');
+var hostname = window.location.hostname;
+var protocol = window.location.protocol.replace(/:/g, '');
+var port = window.location.port || (protocol === 'https' ? '443' : '80');
+var wss = (protocol === 'https' ? 'wss' : 'ws');
+var webSocket = new WebSocket(wss + '://' + hostname + ':' + port + '/echo');
+
+// handle stuff
 webSocket.onmessage = handleSocket;
 webSocket.onopen = print;
 webSocket.onerror = print;
