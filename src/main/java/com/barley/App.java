@@ -12,10 +12,7 @@ import com.barley.util.Utilities;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.*;
 
@@ -35,7 +32,7 @@ public class App {
         MongoDb mongoDb = MongoDb.getInstance();
 
         Map greeting = fs.getFile("greeting.json");
-        Map links = fs.getFile("links.json");
+        //Map links = fs.getFile("links.json");
         Map posts = fs.getFile("posts.json");
 
         before("/*", (request, response) -> {
@@ -53,7 +50,7 @@ public class App {
         });
 
         get("/", ((request, response) -> {
-            //List links = mongoDb.getLinks();
+            List links = mongoDb.getLinks();
             Map<String, Object> model = new HashMap<>();
             model.put("greeting", greeting);
             model.put("links", links);
