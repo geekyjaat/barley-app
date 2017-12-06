@@ -63,7 +63,10 @@ public class AppWebSocket {
     public static void sendToIp(String ip, String message) {
         System.out.println("ip = [" + ip + "], message = [" + message + "]");
         sessions.stream()
-                .filter(s -> s.getRemoteAddress().getAddress().getHostAddress().equalsIgnoreCase(ip))
+                .filter(s -> {
+                    System.out.println("host address = " + s.getRemoteAddress().getAddress().getHostAddress());
+                    return s.getRemoteAddress().getAddress().getHostAddress().equalsIgnoreCase(ip);
+                })
                 .findFirst()
                 .ifPresent(s -> {
                     try {
