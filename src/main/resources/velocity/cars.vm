@@ -1,0 +1,247 @@
+<html lang="en">
+<head>
+    #include("partials/header.html")
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+</head>
+<body>
+    #parse("partials/nav.vm")
+<div class="container-fluid">
+    <div class="jumbotron">
+        <ul class="list-inline">
+            <li><h1>$!title</h1></li>
+            <li><p class="lead">$!text</p></li>
+            <li><p>$!action</p></li>
+        </ul>
+        <form class="form-horizontal" action="/car" method="$method" style="display: $displayForm">
+            <div class="form-group">
+                <input name="id" type="text" id="id" style="display:none;" value="$!formcar.id">
+                <!-- Form row 1 START -->
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="make">Make</label>
+                    ## <input name="make" type="text" class="form-control" id="make" placeholder="make" required>
+                        <select class="form-control" name="make" id="make" required>
+                            <option selected>...</option>
+                            #foreach($make in $makes)
+                                <option
+                                    #if($!formcar.make==$make.make)
+                                            selected
+                                    #end>$make.make
+                                </option>
+                            #end
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="model">Model</label>
+                        <input name="model" type="text" class="form-control" id="model" placeholder="model" required
+                               value="$!formcar.model">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="price">Price</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input name="price" type="number" class="form-control amount" id="price" placeholder="10"
+                                   required value="$!formcar.price">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="year">Year</label>
+                    ##  <input name="year" type="text" class="form-control" id="year" placeholder="2017">
+                        <select class="form-control" name="year" id="year">
+                            <option selected>...</option>
+                            #foreach($year in $years)
+                                <option
+                                    #if($!formcar.year==$year)
+                                            selected
+                                    #end>$year
+                                </option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <!-- Form row 1 END -->
+                <br>
+                <!-- Form row 2 START -->
+                <div class="row">
+                    <div class="form check col-md-1">
+                        <label for="is7Seater">
+                            <input type="checkbox" name="is7Seater" id="is7Seater" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.is7Seater)
+                                   checked
+                                #end>
+                            7 seater?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="feelSpacious" id="feelSpacious" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.feelSpacious)
+                                   checked
+                                #end>
+                            Spacious?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeElectronicFeatures" id="likeElectronicFeatures"
+                                   class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeElectronicFeatures)
+                                   checked
+                                #end>
+                            Like Electronics?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeSeats" id="likeSeats" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeSeats)
+                                   checked
+                                #end>
+                            Seats?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeSafetyFeatures" id="likeSafetyFeatures"
+                                   class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeSafetyFeatures)
+                                   checked
+                                #end>
+                            Safety Features?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeInterior" id="likeInterior" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeInterior)
+                                   checked
+                                #end>
+                            Like Interior?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeExterior" id="likeExterior" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeExterior)
+                                   checked
+                                #end>
+                            Like Exterior?
+                        </label>
+                    </div>
+                    <div class="form-check col-md-1">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="likeDriving" id="likeDriving" class="form-check-input"
+                                   value="TRUE"
+                                #if($formcar.likeDriving)
+                                   checked
+                                #end>
+                            Like Driving?
+                        </label>
+                    </div>
+                </div>
+                <!-- Form row 2 END -->
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="comments">Comments</label>
+                        <textarea name="comments" class="form-control" rows="3" id="comments"
+                                  placeholder="comments..." value="$!formcar.comments"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row" style="display: $displayList">
+            <div class="col-lg-12">
+                <br>
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Cars</div>
+                    <div class="panel-body">
+                        <p>No. of Records: $!count</p>
+                        <!-- Table -->
+                        <table id="myTable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Make/Model/Year</th>
+                                <th>7 Seats?</th>
+                                <th>Like Seats?</th>
+                                <th>Felt Spacious?</th>
+                                <th>Like Interior?</th>
+                                <th>Like Exterior?</th>
+                                <th>Like Electronics?</th>
+                                <th>Like Driving/ Safety Features?</th>
+                                <th>Price</th>
+                                <th>Comments</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                #foreach($car in $cars)
+                                    #if($car)
+                                    <tr>
+                                        <th scope="row">$!car.make / $!car.model / $!car.year</th>
+                                        <td>$!car.is7Seater</td>
+                                        <td>$!car.likeSeats</td>
+                                        <td>$!car.feelSpacious</td>
+                                        <td>$!car.likeInterior</td>
+                                        <td>$!car.likeExterior</td>
+                                        <td>$!car.likeElectronicFeatures</td>
+                                        <td>$!car.likeDriving / $!car.likeSafetyFeatures</td>
+                                        <td>$ $!car.price</td>
+                                        <td>$!car.comments</td>
+                                        <td>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <form action="/car" method="get">
+                                                        <input type="text" name="id" id="id" value="$!car.id"
+                                                               style="display: none">
+                                                        <button type="submit" class="btn btn-link"><i
+                                                                class="fas fa-edit"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <form action="/car" method="get">
+                                                        <input type="text" name="id" id="id" value="$!car.id"
+                                                               style="display: none">
+                                                        <button type="submit" class="btn btn-link"><i
+                                                                class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    #end
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+</body>
+</html>

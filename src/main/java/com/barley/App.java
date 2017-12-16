@@ -3,6 +3,7 @@ package com.barley;
 import com.barley.dao.MongoDb;
 import com.barley.fs.FileResource;
 import com.barley.model.google.*;
+import com.barley.process.CarStore;
 import com.barley.process.Contact;
 import com.barley.process.RomanNumerals;
 import com.barley.socket.AppWebSocket;
@@ -31,9 +32,9 @@ public class App {
 
         MongoDb mongoDb = MongoDb.getInstance();
 
-        Map greeting = fs.getFile("greeting.json");
-        //Map links = fs.getFile("links.json");
-        Map posts = fs.getFile("posts.json");
+        Map greeting = fs.getJsonFromFile("greeting.json");
+        //Map links = fs.getJsonFromFile("links.json");
+        Map posts = fs.getJsonFromFile("posts.json");
 
         before("/*", (request, response) -> {
             String uri = request.uri();
@@ -90,6 +91,14 @@ public class App {
             blog.put("blog", "blogs/blog1.html");
             return Utilities.render(blog, "velocity/blog.vm");
         }));
+
+        // car
+        path("/car", () -> {
+            get("", CarStore::get);
+            get("/:id", CarStore::getId);
+            post("", CarStore::post);
+            put("", CarStore::put);
+        });
 
         // trip
         get("/trip", ((request, response) -> {

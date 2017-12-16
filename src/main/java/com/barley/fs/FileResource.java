@@ -1,6 +1,7 @@
 package com.barley.fs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import spark.utils.IOUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,9 +11,7 @@ public class FileResource {
 
     private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    public Map getFile(String fileName) {
-
-        StringBuilder result = new StringBuilder("");
+    public Map getJsonFromFile(String fileName) {
 
         //Get file from resources folder
         ClassLoader classLoader = getClass().getClassLoader();
@@ -23,5 +22,17 @@ public class FileResource {
             ioe.printStackTrace();
         }
         return values;
+    }
+
+    public String getStringFromFile(String fileName) {
+        //Get file from resources folder
+        ClassLoader classLoader = getClass().getClassLoader();
+        String value = null;
+        try {
+            value = IOUtils.toString(classLoader.getResourceAsStream("content/" + fileName));
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return value;
     }
 }

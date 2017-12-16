@@ -11,7 +11,7 @@ webSocket.onerror = print;
 
 function print(event) {
     console.log(event);
-}
+};
 
 function handleSocket(event) {
     onMessage(event.data);

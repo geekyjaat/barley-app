@@ -33,6 +33,10 @@ public class MongoDb {
         this.db = client.getDatabase(mongoClientUri.getDatabase());
     }
 
+    public MongoDatabase getDb() {
+        return db;
+    }
+
     public List getLinks() {
         MongoCollection<Document> linksCollection = db.getCollection("links");
         List<Map> links = new ArrayList<>();
@@ -93,6 +97,7 @@ public class MongoDb {
                 .append("dateCreated", Utilities.now());
     }
 
+    // QUERY
     public void insertQuery(Query message) {
         new Thread(() -> {
             MongoCollection<Document> query = db.getCollection("query");
